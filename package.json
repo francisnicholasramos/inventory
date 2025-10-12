@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/main.ts",
+    "dev": "concurrently \"npm run dev:server\" \"npm run watch:css\"",
+    "dev:server": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/main.ts",
     "lint": "eslint 'src/**/*.ts'",
     "build": "tsc",
+    "watch:css": "npx @tailwindcss/cli -i ./src/styles/globals.css -o ./src/styles/build.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -36,7 +38,12 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.75.0",
+    "@tailwindcss/cli": "^4.1.14",
     "@types/pg": "^8.15.5",
-    "pg": "^8.16.3"
+    "concurrently": "^9.2.1",
+    "ejs": "^3.1.10",
+    "express-validator": "^7.2.1",
+    "pg": "^8.16.3",
+    "tailwindcss": "^4.1.14"
   }
 }
