@@ -1,17 +1,32 @@
 @import "tailwindcss";
 
-/*
-  Josh's Custom CSS Reset
-  https://www.joshwcomeau.com/css/custom-css-reset/
+@font-face {
+  font-family: "Lobster";
+  src: url("/fonts/Lobster-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "GreatVibes";
+  src: url("/fonts/GreatVibes.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Josh'sCustom CSS Reset https://www.joshwcomeau.com/css/custom-css-reset/ 
 */
 
 *, *::before, *::after {
   box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-  padding: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -23,6 +38,7 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  /* background-color: #f2ece1; */
 }
 
 img, picture, video, canvas, svg {
@@ -48,3 +64,10 @@ h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+.logo {
+  -webkit-text-stroke: 1px #333;
+  text-shadow: 1px 1px 5px #163933;
+}
+
+
