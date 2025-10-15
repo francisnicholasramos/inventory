@@ -1,0 +1,22 @@
+<% items.forEach(item => { %>
+  <div class="flex flex-col border border-[#163933]">
+    <div class="w-full h-full">
+      <img
+        src="<%= item.image %>"
+        alt="<%= item.item_name %>"
+        loading="lazy"
+        class="w-full h-full object-cover object-center"
+      />
+    </div>
+
+    <div class="pl-2 py-1 bg-[#163933]">
+      <h4 class="text-[#fff8da] font-[Inter]"><%= item.item_name %></h4>
+      <p class="text-[#cba060] text-sm font-[Inter]">₱<%= item.price %></p>
+    </div>
+  </div>
+<% }) %>
+
+
+<!-- green - #163933 -->
+<!-- peach - #fff8da -->
+<!-- brown- #cba060 -->
