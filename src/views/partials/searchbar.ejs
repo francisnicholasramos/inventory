@@ -1,0 +1,16 @@
+<form method="GET" action="/search" class="flex flex-col relative" onsubmit="return false;">
+  <div class="flex gap-1">
+    <input
+      type="text"
+      id="searchInput"
+      autocomplete="off" 
+      placeholder="🔍︎ Search items..."
+      class="flex-1 px-3 py-2 border border-gray-300 rounded-lg outline-none text-[#333] focus:ring-2 focus:ring-[#1d4942]"
+    />
+  </div>
+
+  <ul
+    id="suggestions"
+    class="absolute top-full left-0 right-0 px-1 mt-1 bg-[#f2f2f2] shadow-lg z-50"
+  ></ul>
+</form>
