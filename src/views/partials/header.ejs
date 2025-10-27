@@ -1,27 +1,100 @@
-<div class="flex flex-col justify-around bg-[#163933]">
-    <div class="flex flex-col m-auto w-full min-w-[320px] max-w-[1200px]">
-        <div class="flex justify-center gap-10 mt-2 text-[#fff8da] font-[Inter] text-[0.8rem]">
-            <a href="/" class="hover:underline underline-offset-4 font-semibold">HOME</a>
-            <a href="#" class="hover:underline underline-offset-4 font-semibold">BIKES / FRAMES</a>
-            <a href="/components" class="hover:underline underline-offset-4 font-semibold">COMPONENTS</a>
-            <a href="#" class="hover:underline underline-offset-4 font-semibold">BRANDS</a>
-        </div>
-
-        <h1 class="flex justify-center items-end text-center font-[Lobster] text-[#fff8da] gap-x-10">
-            <!-- <div class="border p-5"> -->
-            <!--     <p>Track bike</p> -->
-            <!-- </div> -->
-            <p class="font-semibold font-[GreatVibes] text-2xl text-[#cba060]">Steel legacy</p>
-            <a href="/">
-                <p class="logo -rotate-6 mt-4 mb-[-15px] text-[#fff8da] font-[Lobster] text-7xl">Velocité Cycles</p>
-            </a>
-            <p class="font-semibold font-[GreatVibes] text-2xl text-[#cba060]">Since 1970</p>
-            <!-- <div class="border p-5"> -->
-            <!--     <p>Racer Bike</p> -->
-            <!-- </div> -->
-        </h1>
+<div 
+  id="header"
+  class="sticky top-0 z-50 flex flex-col justify-around bg-[#163933]
+         sm:flex md:flex lg:flex-col"
+>
+  <div class="flex m-auto w-full px-2 min-w-[320px] max-w-[1200px]
+              sm:flex md:flex justify-between lg:flex-col">
+    
+    <!-- Mobile Hamburger Button -->
+    <button 
+      id="mobile-menu-button"
+      class="absolute right-4 z-50 flex flex-col gap-1.5 py-2 sm:hidden"
+      aria-label="Toggle menu"
+    >
+      <span class="hamburger-line block w-6 h-0.5 bg-[#fff8da] transition-all duration-300"></span>
+      <span class="hamburger-line block w-6 h-0.5 bg-[#fff8da] transition-all duration-300"></span>
+      <span class="hamburger-line block w-6 h-0.5 bg-[#fff8da] transition-all duration-300"></span>
+    </button>
+    
+    <!-- Links Container -->
+    <div
+      id="nav-links"
+      class="hidden sm:flex justify-center gap-10 mt-2 text-[#fff8da] font-[Inter] text-[0.8rem]
+             order-2 sm:order-2 md:order-2 items-center lg:order-1"
+    >
+      <a href="/" class="hover:underline underline-offset-4 font-semibold">HOME</a>
+      <a href="/components" class="hover:underline underline-offset-4 font-semibold">COMPONENTS</a>
+      <a href="/categories" class="hover:underline underline-offset-4 font-semibold">CATEGORIES</a>
     </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div 
+      id="mobile-menu"
+      class="fixed inset-0 bg-[#163933] transform translate-x-full transition-transform duration-300 ease-in-out sm:hidden z-40"
+    >
+      <div class="flex flex-col items-center justify-center h-full gap-8 text-[#fff8da] font-[Inter] text-xl">
+        <a href="/" class="mobile-link hover:text-[#cba060] transition-colors font-semibold">HOME</a>
+        <a href="/components" class="mobile-link hover:text-[#cba060] transition-colors font-semibold">COMPONENTS</a>
+        <a href="/categories" class="mobile-link hover:text-[#cba060] transition-colors font-semibold">CATEGORIES</a>
+      </div>
+    </div>
+    
+    <!-- Title -->
+    <div
+      class="flex items-end text-center font-[Lobster] text-[#fff8da] gap-x-10
+             order-1 sm:order-1 md:order-1 lg:order-2 justify-center"
+    >
+      <p class="extra font-semibold font-[GreatVibes] text-2xl text-[#cba060] hidden lg:block">Steel legacy</p>
+      <a href="/">
+        <p class="logo -rotate-6 mt-4 mb-[-15px] text-[#fff8da] font-[Lobster] text-5xl md:text-6xl lg:text-7xl">
+          Velocité Cycles
+        </p>
+      </a>
+      <p class="extra font-semibold font-[GreatVibes] text-2xl text-[#cba060] hidden lg:block">Since 1970</p>
+    </div>
+  </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerLines = document.querySelectorAll('.hamburger-line');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    
+    function toggleMenu() {
+      const isOpen = mobileMenu.classList.contains('translate-x-0');
+      
+      if (isOpen) {
+        // Close menu
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        hamburgerLines[0].style.transform = 'rotate(0) translateY(0)';
+        hamburgerLines[1].style.opacity = '1';
+        hamburgerLines[2].style.transform = 'rotate(0) translateY(0)';
+      } else {
+        // Open menu
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        hamburgerLines[0].style.transform = 'rotate(0) translateY(8px)';
+        hamburgerLines[1].style.opacity = '0';
+        hamburgerLines[2].style.transform = 'rotate(0) translateY(-8px)';
+      }
+    }
+    
+    menuButton.addEventListener('click', toggleMenu);
+    
+    // Close menu when clicking on a link
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', toggleMenu);
+    });
+  });
+</script>
+
+
+
+<script src="/header.js"></script>
 
 <!-- green - #163933 -->
 <!-- peach - #fff8da -->

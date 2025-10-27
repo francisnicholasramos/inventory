@@ -8,14 +8,12 @@
     </head>
     <body>
         <%- include('partials/header') %>
-        <div class="flex flex-col p-2 gap-5 justify-center m-auto min-w-[320px] max-w-[1200px]">
+        <div class="flex flex-col gap-5 p-2 justify-center m-auto min-w-[320px] max-w-[1200px]">
             <form
-                    action="/item/new"
+                    action="/item/update/<%= item.id %>"
                     method="POST"
                     class="flex flex-col mt-10 w-full bg-white border border-gray-300 shadow-md rounded-md p-8 space-y-5"
                     >
-                    <h2 class="text-2xl font-semibold text-[#163933] text-center mb-2">Add New Item</h2>
-
                     <div class="flex flex-col">
                         <label for="name" class="font-medium text-gray-700 mb-1">Item Name</label>
                         <input
@@ -24,6 +22,7 @@
                                 type="text"
                                 placeholder="e.g. Classic crankset"
                                 class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#245c52] focus:border-[#245c52] transition"
+                                value="<%= item.item_name %>"
                                 />
                     </div>
 
@@ -35,6 +34,7 @@
                                 type="text"
                                 placeholder="Short details about the item"
                                 class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#245c52] focus:border-[#245c52] transition"
+                                value="<%= item.description %>"
                                 />
                     </div>
 
@@ -46,6 +46,7 @@
                                 type="number"
                                 placeholder="Enter price"
                                 class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#245c52] focus:border-[#245c52] transition"
+                                value="<%= item.price %>"
                                 />
                     </div>
 
@@ -56,8 +57,13 @@
                                 name="category"
                                 class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#245c52] focus:border-[#245c52] transition"
                                 >
-                                <% categories.forEach((cat) => { %>
-                                <option value="<%= cat.id %>"><%= cat.category %></option>
+                                <% categories.forEach((category) => { %>
+                                <option 
+                                    value="<%= category.id %>"
+                                    <%= category.id === item.category_id ? 'selected' : '' %>
+                                >
+                                    <%= category.category %>
+                                </option>
                                 <% }) %>
                         </select>
                     </div>
@@ -65,14 +71,14 @@
                     <button
                             type="submit"
                             class="bg-[#245c52] text-white font-semibold px-6 py-2 rounded-md cursor-pointer hover:bg-[#2b6e63] transition-colors duration-150"
-                    >
-                            Submit
+                            >
+                            Submit Changes
                     </button>
             </form>
 
             <button 
                 class="w-fit block ml-auto md:ml-0 border border-[#245c52] text-[#245c52] font-semibold px-2 py-1 rounded-md cursor-pointer"
-                onclick="window.location.href='/components'"
+                onclick="window.location.href='/components/<%= item.id %>'"
                 >
                 <<
                 Go Back

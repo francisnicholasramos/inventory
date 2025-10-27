@@ -4,3 +4,7 @@ export type InputTypes = {
   price: number;
   category: string;
 }
+
+export type CategoryType = {
+  category_name: string;
+}

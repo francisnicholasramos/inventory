@@ -1,4 +1,28 @@
-<div class="flex mx-auto mt-10 h-full w-full min-w-[320px] max-w-[1200px]">
-    <%- include('sidebar') %>
-    <%- include('content') %>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Velocité</title>
+        <link href="/styles/build.css" rel="stylesheet">
+    </head>
+    <body>
+        <%- include('partials/header') %>
+        <div class="flex flex-col gap-2 px-2 mx-auto mt-10 h-full w-full min-w-[320px] max-w-[1200px]">
+            <div class="flex justify-end">
+                <button 
+                    class="w-fit bg-[#1d4942] text-[#fff8da] font-semibold px-2 py-1 rounded-md cursor-pointer hover:bg-[#245b52] transition-colors duration-150"
+                    onclick="window.location.href='/form'"
+                >
+                    <b>+</b> 
+                    Add Item
+                </button>
+            </div>
+
+            <div class="flex flex-col md:flex-row">
+                <%- include('partials/sidebar') %>
+                <%- include('content') %>
+            </div>
+        </div>
+    </body>
+</html>

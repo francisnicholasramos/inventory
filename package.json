@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/francisnicholasramos/inventory#readme",
   "devDependencies": {
+    "@types/ejs": "^3.1.5",
     "@types/express": "^5.0.3",
     "@types/node": "^24.7.0",
     "dotenv": "^17.2.3",

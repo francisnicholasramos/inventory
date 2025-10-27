@@ -3,14 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= item.item_name %> | Velocité</title>
+    <title>Velocité</title>
     <link href="/styles/build.css" rel="stylesheet" />
   </head>
   <body>
     <%- include('partials/header') %>
 
-    <div class="flex mx-auto mt-10 h-full w-full min-w-[320px] max-w-[1200px] gap-10">
-      <div class="w-1/2 max-h-96 border border-gray-300 rounded-lg overflow-hidden shadow">
+    <div 
+        class="flex flex-col mx-auto p-2 mt-10 h-full w-full min-w-[320px] max-w-[1200px]
+               gap-3 md:flex-row md:gap-10
+    ">
+      <div class="w-full max-h-96 border border-gray-300 rounded-lg overflow-hidden shadow
+                  md:w-1/2
+      ">
           <img
             src="<%= item.image %>"
             alt="<%= item.item_name %>"
@@ -19,17 +24,29 @@
           />
       </div>
 
-      <div class="w-1/2 flex flex-col gap-4">
-        <h1 class="text-3xl font-bold text-[#163933]"><%= item.item_name %></h1>
-        <p class="text-gray-700 text-lg"><%= item.description %></p>
-        <p class="text-2xl font-bold text-[#1d4942]">₱<%= item.price %></p>
+      <div class="w-full md:w-1/2 flex flex-col md:gap-10 gap-1">
+        <div class="flex flex-col gap-2">
+            <h1 class="text-3xl font-bold text-[#163933]"><%= item.item_name %></h1>
+            <p class="text-gray-700 text-lg"><%= item.description %></p>
+            <p class="text-2xl font-bold text-[#1d4942]">₱<%= item.price %></p>
+        </div>
 
-        <a
-          href="/components"
-          class="w-fit mt-4 bg-[#1d4942] text-[#fff8da] px-4 py-2 rounded hover:bg-[#163933] transition"
-        >
-          ← Back to items
-        </a>
+        <div class="flex flex-col items-end md:items-start">
+            <a
+                href="/components"
+                class="w-fit order-last md:order-first mt-4 bg-[#1d4942] text-[#fff8da] px-4 py-2 rounded hover:bg-[#245b52] transition"
+                >
+                << Back to items
+            </a>
+
+            <a
+                href="/edit/<%= item.id %>"
+                class="w-fit mt-4 bg-gray-500 text-[#fff] px-4 py-2 rounded hover:bg-[#717c8e] transition"
+                >
+                Edit
+            </a>
+        </div>
+
       </div>
     </div>
   </body>

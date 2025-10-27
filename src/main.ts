@@ -1,19 +1,23 @@
 import express from "express";
 import path from "path";
 import {router} from "./routes/indexRoutes"
+import {category} from "./routes/categories"
 
 const app = express();
 
 const port = 3000;
 
+app.use(express.urlencoded({extended: true}))
+app.use(express.json());
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "scripts")));
 app.use("/styles", express.static(path.join(__dirname, "styles")));
 
-app.use(express.urlencoded({extended: true}))
-
+app.use("/", category)
 app.use("/", router)
 
 app.listen(port, () => {

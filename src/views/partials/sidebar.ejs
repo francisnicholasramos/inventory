@@ -1,5 +1,5 @@
 <!-- side bar -->
-<div class="flex flex-col p-3 gap-5 border border-gray-300">
+<div class="flex flex-col p-3 gap-5 border border-r-0 border-gray-300">
     <%- include('searchbar') %>
 
     <div class="flex flex-col gap-1"> 
@@ -12,13 +12,15 @@
                     name="category"
                     id="<%= items.category %>"
                     value="<%= items.id %>"
-                    <%= Array.isArray(selectedCategory) && selectedCategory.includes(items.id) ? "checked" : "" %> />
+                    <%= Array.isArray(selectedCategory) && selectedCategory.includes(items.id) ? "checked" : "" %> 
+                />
                     <label for="<%= items.category %>" class="text-[#333] font-[Inter]">
                         <%= items.category %>
                     </label>
             </div>
             <% }) %>
-            <button type="submit" class="w-fit rounded py-1 px-3 cursor-pointer bg-[#1d4942] text-[#fff8da]">Apply filters</button>
+
+            <button type="submit" class="w-fit rounded py-1 px-3 cursor-pointer bg-[#1d4942] hover:bg-[#245b52] text-[#fff8da]">Apply filters</button>
         </form>
     </div>
 </div>
