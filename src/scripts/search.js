@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const items = suggestionList.querySelectorAll("li");
     if (!items.length) return;
 
-    if (e.key === "ArrowDown") {
+    if (e.key === "ArrowDown" || e.key === "Tab") {
       currentSelection = (currentSelection + 1) % items.length;
       highlightSelection(items);
       e.preventDefault();
