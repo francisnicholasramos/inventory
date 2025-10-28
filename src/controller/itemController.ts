@@ -1,5 +1,14 @@
 import {Request, Response} from "express";
-import {getItems, getItemId, searchItem, insertItem, updateItem, filterItems, getCategories} from "../db/queries";
+import {InputTypes} from "../types/InputTypes"
+import {matchedData, validationResult} from "express-validator";
+import {getItems, 
+        getItemId, 
+        searchItem, 
+        insertItem, 
+        updateItem, 
+        filterItems, 
+        getCategories
+} from "../db/queries";
 
 export async function getAllItems(req: Request, res: Response) {
   try {
@@ -26,17 +35,17 @@ export async function getAllItems(req: Request, res: Response) {
 }
 
 export async function addItem(req: Request, res: Response) {
-    const id = req.query.category;
-    
-    const addNewItem = {
-        item_name: req.body.name, // item_name: property req.body.NAME_HERE: name attribute from the form
-        description: req.body.description,
-        price: req.body.price,
-        category: req.body.category
-    };
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        res.status(500).send(errors.mapped())
+        return;
+    } 
+
+    const validated = matchedData(req) as InputTypes;
 
     try {
-        await insertItem(addNewItem);
+        await insertItem(validated);
         res.redirect("/");
     } catch (error) {
         console.log(error);
@@ -67,15 +76,18 @@ export async function editItemGet(req: Request, res: Response) {
 
 export async function editItemPost(req: Request, res: Response) {
     const {id} = req.params
-    const updateCurrentItem = {
-        item_name: req.body.name, 
-        description: req.body.description,
-        price: req.body.price,
-        category: req.body.category
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        res.status(500).send(errors.mapped())
+        return;
     }
 
+    const validate = matchedData(req) as InputTypes;
+
     try {
-        await updateItem(Number(id), updateCurrentItem)
+        await updateItem(Number(id), validate)
         res.redirect(`/components/${id}`)
     } catch(error) {
         res.status(500).send("Failed to updated an item.")

@@ -1,14 +1,20 @@
 import {Request, Response} from "express";
+import {matchedData, validationResult} from "express-validator"
+import {CategoryType} from "../types/InputTypes"
 import {addCategory, getCategories} from "../db/queries";
 
 export async function addNewCategory(req: Request, res: Response) {
-    const newCategory = {
-        category_name: req.body.category
+    const errors = validationResult(req)
+    
+    if (!errors.isEmpty()) {
+        res.status(500).send(errors.mapped());
+        return;
     }
 
-    console.log("test", newCategory)
+    const validated = matchedData(req) as CategoryType;
+
     try {
-        await addCategory(newCategory);
+        await addCategory(validated);
         res.redirect("/categories")
     } catch (error) {
         res.status(500).send(error);
