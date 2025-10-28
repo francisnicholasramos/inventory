@@ -35,5 +35,5 @@ router.route("/edit/:id")
       .get(editItemGet)
 
 router.route("/item/update/:id")
-      .post(editItemPost)
+      .post(validateInput, editItemPost)
           
